@@ -3,7 +3,7 @@
 const BaseMessageComponent = require('./BaseMessageComponent');
 const ModalActionRow = require('./ModalActionRow');
 const { MessageComponentTypes } = require('../util/Constants');
-const Util = require('../util/Util');
+const {Util, resolvePartialEmoji} = require('../util/Util');
 
 /**
  * Represents a Select Menu Component of a Modal.
@@ -166,7 +166,7 @@ class SelectMenuComponent extends BaseMessageComponent {
 
     label = Util.verifyString(label, RangeError, 'SELECT_OPTION_LABEL');
     value = Util.verifyString(value, RangeError, 'SELECT_OPTION_VALUE');
-    emoji = emoji ? Util.resolvePartialEmoji(emoji) : null;
+    emoji = emoji ? resolvePartialEmoji(emoji) : null;
     description = description ? Util.verifyString(description, RangeError, 'SELECT_OPTION_DESCRIPTION', true) : null;
 
     return { label, value, description, emoji, default: option.default ?? false };

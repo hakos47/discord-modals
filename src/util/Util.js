@@ -32,4 +32,23 @@ class Util extends null {
   }
 }
 
-module.exports = Util;
+function verifyString(
+  data,
+  error = Error,
+  errorMessage = `Expected a string, got ${data} instead.`,
+  allowEmpty = true,
+) {
+  if (typeof data !== 'string') throw new error(errorMessage);
+  if (!allowEmpty && data.length === 0) throw new error(errorMessage);
+  return data;
+}
+
+function resolvePartialEmoji(emoji) {
+  if (!emoji) return null;
+  if (typeof emoji === 'string') return /^\d{17,19}$/.test(emoji) ? { id: emoji } : Util.parseEmoji(emoji);
+  const { id, name, animated } = emoji;
+  if (!id && !name) return null;
+  return { id, name, animated: Boolean(animated) };
+}
+
+module.exports = {Util, verifyString, resolvePartialEmoji};

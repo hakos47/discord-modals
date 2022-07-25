@@ -1,6 +1,6 @@
 'use strict';
 
-const { Util } = require('discord.js');
+const { verifyString, Util } = require('../util/Util.js');
 const BaseMessageComponent = require('./BaseMessageComponent');
 const ModalActionRow = require('./ModalActionRow');
 const { RangeError } = require('./errors');
@@ -71,7 +71,7 @@ class Modal {
    */
 
   setCustomId(customId) {
-    this.customId = Util.verifyString(customId, RangeError, 'MODAL_CUSTOM_ID');
+    this.customId = verifyString(customId, RangeError, 'MODAL_CUSTOM_ID');
     return this;
   }
 

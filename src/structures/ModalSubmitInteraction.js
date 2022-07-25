@@ -83,7 +83,6 @@ class ModalSubmitInteraction extends Interaction {
 
     /**
      * The Action Rows of the modal with the Text Input Components.
-     * @type {Array<ModalActionRow>}
      */
 
     this.components = data.data.components?.map(
